@@ -1,3 +1,13 @@
+//setting states in a new way or format
+const State = {
+    IDLE: "idle",
+    READY: "ready",
+    HITPIPE: "hitpipe",
+    HITGROUND: "hitground",
+    FALLING: "falling",
+    ASCENDING: "ascending",
+}
+
 export class Bird {
     constructor() {
         this.x = 480
@@ -22,22 +32,23 @@ export class Bird {
     }
 
     goToINTRO(){
-        this.x = 480
+        this.setState(State.INTRO)
     }
     goToSTART(){
-        this.x = 200
+        this.setState(State.START)
+    }
+    setState(state){
+        if (state == State.INTRO){
+            this.x = 480
+        }
+        else if (state == State.START){
+            this.x = 200
+        }
+        this.state = state
     }
 }
     
 
 
 
-//setting states in a new way or format
-const State = {
-    IDLE: "idle",
-    READY: "ready",
-    HITPIPE: "hitpipe",
-    HITGROUND: "hitground",
-    FALLING: "falling",
-    ASCENDING: "ascending",
-}
+
