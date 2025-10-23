@@ -4,9 +4,17 @@
 <style>
     canvas { border: 10px solid rgb(0, 0, 0)}
 </style>
-<script type="text/javascript" src="game.js"></script>   
+<script type="module" src="game.js"></script>
+<script type="module">
+    import Game from './game.js'
+    function runGame() {
+        var game = new Game()
+        game.run()
+    }
+    document.addEventListener('DOMContentLoaded',runGame)
+</script>
 </head>
-      <body onLoad="new Game().run()"></body>  
+      <body>  
    <canvas id="game" width ="960" height="720"></canvas> 
 </body>   
 </html>

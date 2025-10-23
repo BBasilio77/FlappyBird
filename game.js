@@ -1,5 +1,5 @@
 
-//import {Bird} from './bird.js'
+import {Bird} from './bird.js'
 
 const State = {
     INTRO: "intro",
@@ -10,9 +10,7 @@ const State = {
     ASCENDING: "ascending",
 }
 
-
-
-class Game{
+export default class Game {
     constructor() {
         
         const canvas = document.getElementById("game")

@@ -22,7 +22,7 @@ export class Bird {
 
 
 }
-//setting states in a new way/format
+//setting states in a new way or format
 const State = {
     IDLE: "idle",
     READY: "ready",
