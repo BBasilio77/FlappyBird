@@ -17,7 +17,7 @@ export default class Game {
         this.ctx = canvas.getContext("2d")
         document.addEventListener("keydown", this.keydown.bind(this))
         //document.addEventListener("keyup", this.keyup.bind(this))
-        this.bird = new fakebird()
+        this.bird = new Bird()
         this.setState(State.INTRO)
     }
     run() {
@@ -32,9 +32,10 @@ export default class Game {
             this.ctx.fillText("Welcome Players", 240, 125)
             this.ctx.fillText("press SPACE to begin", 240, 250)
         }
-        window.requestAnimationFrame(this.frame.bind(this))
+        
         this.bird.draw(this.ctx)
         this.bird.animate()
+        window.requestAnimationFrame(this.frame.bind(this))
     }
 
     keydown(event) {
@@ -53,29 +54,5 @@ export default class Game {
             this.bird.goToSTART()
         }
         this.state = state
-    }
-}
-
-
-class fakebird{
-    constructor() {
-        this.radius = 0
-        this.x = 480
-    }
-    draw(ctx) {
-        ctx.fillStyle = "rgba(190, 129, 240, 1)"
-        ctx.beginPath()
-        ctx.arc(this.x, 360, this.radius, 0, Math.PI * 2)
-        ctx.fill()
-    }
-    animate(){
-        this.radius = (this.radius + 1)%100
-    }
-
-    goToINTRO(){
-        this.x = 480
-    }
-    goToSTART(){
-        this.x = 200
     }
 }
