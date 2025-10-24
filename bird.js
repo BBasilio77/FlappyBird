@@ -31,22 +31,58 @@ export class Bird {
         this.radius = (this.radius + 1)%100
     }
 
-    goToINTRO(){
+    prepareForGame(){
         this.setState(State.INTRO)
     }
-    goToSTART(){
+    movetoStartingPosition(){
         this.setState(State.START)
     }
-    setState(state){
+    hittingThePipe() {
+        this.setState(State.HITPIPE)
+    }
+    hittingTheGround() {
+        this.setState(State.HITGROUND)
+    }
+
+    //falling & ascending is in "jump() {}"
+    jump() {
+        this.setState(State.ASCENDING)
+    }
+    
+
+
+    setState(state) {
         if (state == State.INTRO){
             this.x = 480
+            this.dx = 0
+             this.dy = 0
+            this.isflying = false
         }
         else if (state == State.START){
             this.x = 200
+
+        }
+        else if (state == State.HITPIPE) {
+            this.dy = 0
+            this.isgravity = false
+        }
+        else if (state == State.HITGROUND) {
+            
+        }
+        else if (state == State.FALLING) {
+            this.dy = 0
+            this.isgravity = true
+            this.isflying = true 
+        }
+        else if (state == State.ASCENDING) {
+            this.dy = 10
+            this.isgravity = true      
         }
         this.state = state
     }
-}
+}  
+        
+       
     
 
 

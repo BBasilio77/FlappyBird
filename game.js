@@ -4,10 +4,10 @@ import {Bird} from './bird.js'
 const State = {
     INTRO: "intro",
     READY: "ready",
-    HITPIPE: "hitpipe",
-    HITGROUND: "hitground",
-    FALLING: "falling",
-    ASCENDING: "ascending",
+//    HITPIPE: "hitpipe",
+//    HITGROUND: "hitground",
+//    FALLING: "falling",
+//    ASCENDING: "ascending",
 }
 
 export default class Game {
@@ -46,13 +46,27 @@ export default class Game {
         }
     }
 
-    setState(state){
+  setState(state){
         if (state == State.INTRO){
-            this.bird.goToINTRO()
+            this.bird.prepareForGame()
         }
         else if (state == State.START){
-            this.bird.goToSTART()
+            this.x = 200
         }
+            /*
+        else if (state == State.HITPIPE) {
+            
+        }
+        else if (state == State.HITGROUND) {
+            
+        }
+        else if (state == State.FALLING) {
+            
+        }
+        else if (state == State.ASCENDING) {
+            
+        }
+        */
         this.state = state
     }
 }
