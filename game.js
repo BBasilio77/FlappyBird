@@ -1,5 +1,6 @@
 
 import {Bird} from './bird.js'
+import {Background} from './Background.js'
 
 const State = {
     INTRO: "intro",
@@ -18,6 +19,7 @@ export default class Game {
         document.addEventListener("keydown", this.keydown.bind(this))
         //document.addEventListener("keyup", this.keyup.bind(this))
         this.bird = new Bird()
+        this.background = new Background
         this.setState(State.INTRO)
     }
     run() {
@@ -32,7 +34,7 @@ export default class Game {
             this.ctx.fillText("Welcome Players", 240, 125)
             this.ctx.fillText("press SPACE to begin", 240, 250)
         }
-        
+
         this.bird.draw(this.ctx)
         this.bird.animate()
         window.requestAnimationFrame(this.frame.bind(this))
