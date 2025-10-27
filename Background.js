@@ -1,4 +1,4 @@
-export class background {
+export class Background {
     constructor() {
         this.x = 480
         this.radius = 0
