@@ -36,6 +36,7 @@ export default class Game {
         }
 
         this.background.draw(this.ctx)
+        this.background.animate()
         this.bird.draw(this.ctx)
         this.bird.animate()
         window.requestAnimationFrame(this.frame.bind(this))
