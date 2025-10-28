@@ -1,5 +1,5 @@
 //setting states in a new way or format
-const State = {
+const BirdState = {
     IDLE: "idle",
     READY: "ready",
     HITPIPE: "hitpipe",
@@ -19,7 +19,7 @@ export class Bird {
         //flap sequence here
         this.isflying = false
         this.isgravity = false
-        this.state = State.IDLE
+        this.state = BirdState.IDLE
     }
          draw(ctx) {
         ctx.fillStyle = "rgba(0, 0, 0, 1)"
@@ -32,49 +32,51 @@ export class Bird {
     }
 
     prepareForGame(){
-        this.setState(State.INTRO)
+        this.setState(BirdState.IDLE)
     }
-    movetoStartingPosition(){
-        this.setState(State.START)
+    startToFly(){
+        this.setState(BirdState.FALLING)
     }
     hittingThePipe() {
-        this.setState(State.HITPIPE)
+        this.setState(BirdState.HITPIPE)
     }
     hittingTheGround() {
-        this.setState(State.HITGROUND)
+        this.setState(BirdState.HITGROUND)
     }
 
     //falling & ascending is in "jump() {}"
     jump() {
-        this.setState(State.ASCENDING)
+        this.setState(BirdState.ASCENDING)
     }
     
 
 
     setState(state) {
-        if (state == State.INTRO){
-            this.x = 480
+        console.log(`Bird changing to state ${state}`)
+        
+        if (state == BirdState.IDLE){
+            this.x = 0
             this.dx = 0
              this.dy = 0
             this.isflying = false
         }
-        else if (state == State.START){
+        else if (state == BirdState.READY){
             this.x = 200
-
         }
-        else if (state == State.HITPIPE) {
+        
+        else if (state == BirdState.HITPIPE) {
             this.dy = 0
             this.isgravity = false
         }
-        else if (state == State.HITGROUND) {
+        else if (state == BirdState.HITGROUND) {
             
         }
-        else if (state == State.FALLING) {
+        else if (state == BirdState.FALLING) {
             this.dy = 0
             this.isgravity = true
             this.isflying = true 
         }
-        else if (state == State.ASCENDING) {
+        else if (state == BirdState.ASCENDING) {
             this.dy = 10
             this.isgravity = true      
         }
