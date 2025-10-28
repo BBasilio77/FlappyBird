@@ -25,6 +25,10 @@ export default class Game {
     }
     frame() {
         this.ctx.clearRect(0, 0, 960, 720)
+       
+        this.background.draw(this.ctx)
+        this.background.animate()
+       
         if (this.state == GameState.INTRO) {
             this.ctx.font = "30px serif"
             this.ctx.fillStyle = "rgba(0, 0, 0, 1"
@@ -32,7 +36,7 @@ export default class Game {
             this.ctx.fillText("press SPACE to begin...", 350, 550)
         }
 
-        this.background.draw(this.ctx)
+
         this.bird.draw(this.ctx)
         this.bird.animate()
         window.requestAnimationFrame(this.frame.bind(this))
