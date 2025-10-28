@@ -2,13 +2,10 @@
 import {Bird} from './bird.js'
 import {Background} from './Background.js'
 
-const State = {
+const GameState = {
     INTRO: "intro",
     READY: "ready",
-//    HITPIPE: "hitpipe",
-//    HITGROUND: "hitground",
-//    FALLING: "falling",
-//    ASCENDING: "ascending",
+    PLAYING: "playing"
 }
 
 export default class Game {
@@ -20,7 +17,7 @@ export default class Game {
         //document.addEventListener("keyup", this.keyup.bind(this))
         this.bird = new Bird()
         this.background = new Background
-        this.setState(State.INTRO)
+        this.setState(GameState.INTRO)
     }
     run() {
         console.log ("running the game")
@@ -32,7 +29,7 @@ export default class Game {
         this.background.draw(this.ctx)
         this.background.animate()
        
-        if (this.state == State.INTRO) {
+        if (this.state == GameState.INTRO) {
             this.ctx.font = "30px serif"
             this.ctx.fillStyle = "rgba(0, 0, 0, 1"
             this.ctx.fillText("Welcome Players!", 374, 200)
@@ -46,19 +43,20 @@ export default class Game {
     }
 
     keydown(event) {
-        if (this.state == State.INTRO) {
+        if (this.state == GameState.INTRO) {
             if (event.key == " ") {
-                this.setState(State.START)
+                this.setState(GameState.READY)
             }
         }
     }
 
-  setState(state){
-        if (state == State.INTRO){
+    setState(state) {
+      console.log(`Game changing to state ${state}`)
+        if (state == GameState.READY){
             this.bird.prepareForGame()
         }
-        else if (state == State.START){
-            this.x = 200
+        else if (state == GameState.PLAYING){
+            this.bird.startToFly()
         }
             /*
         else if (state == State.HITPIPE) {
