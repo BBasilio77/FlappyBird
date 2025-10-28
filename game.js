@@ -52,11 +52,12 @@ export default class Game {
 
     setState(state) {
       console.log(`Game changing to state ${state}`)
-        if (state == GameState.READY){
-            this.bird.prepareForGame()
+        if (state == GameState.INTRO){
+            //this.bird.prepareForGame()
         }
-        else if (state == GameState.PLAYING){
-            this.bird.startToFly()
+
+        else if (state == GameState.READY){
+            this.bird.prepareForGame()
         }
             /*
         else if (state == State.HITPIPE) {
