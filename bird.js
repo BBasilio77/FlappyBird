@@ -3,6 +3,7 @@ const BirdState = {
     IDLE: "idle",
     GETTINGREADY: "gettingready",
     READY: "ready",
+    PLAYING: "playing",
     HITPIPE: "hitpipe",
     HITGROUND: "hitground",
     FALLING: "falling",
@@ -32,12 +33,17 @@ export class Bird {
     }
     animate() {
         this.x += this.dx
+        this.y += this.dy
+        if (this.isgravity) {
+                this.dy += 1
+
+        }
         //this.radius = (this.radius + 1)%100
         if (this.state == BirdState.GETTINGREADY) {
             this.statecounter -= 1
-        if (this.statecounter == 0) {
-               this.setState(BirdState.READY)
-        }
+            if (this.statecounter == 0) {
+                this.setState(BirdState.READY)
+            }
         }
       
     }
@@ -73,15 +79,12 @@ export class Bird {
             this.isflying = false
         }
         else if (state == BirdState.GETTINGREADY) {
-            this.dx = -10
-            this.statecounter = 30
+            this.dx = -5
+            this.statecounter = 60
         }
         
         else if (state == BirdState.READY) {
             this.dx = 0
-        }
-        else if (state == BirdState.HITGROUND) {
-            
         }
         else if (state == BirdState.FALLING) {
             this.dy = 0
