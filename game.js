@@ -1,6 +1,7 @@
 
 import {Bird} from './bird.js'
 import {Background} from './Background.js'
+import {Pipes} from './pipes.js'
 
 const GameState = {
     INTRO: "intro",
@@ -16,7 +17,7 @@ export default class Game {
         document.addEventListener("keydown", this.keydown.bind(this))
         //document.addEventListener("keyup", this.keyup.bind(this))
         this.bird = new Bird()
-        this.background = new Background
+        this.background = new Background('MinecraftBg.png', 2)
         this.setState(GameState.INTRO)
     }
     run() {
