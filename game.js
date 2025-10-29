@@ -33,8 +33,8 @@ export default class Game {
         if (this.state == GameState.INTRO) {
             this.ctx.font = "30px serif"
             this.ctx.fillStyle = "rgba(0, 0, 0, 1"
-            this.ctx.fillText("Welcome Players!", 374, 200)
-            this.ctx.fillText("press SPACE to begin...", 350, 550)
+            this.ctx.fillText("FLAPPY BIRD", 380, 250)
+            this.ctx.fillText("press SPACE to begin...", 350, 500)
         }
 
 
