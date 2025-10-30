@@ -21,8 +21,6 @@ export class Background {
         if(this.x == -960) {
             this.x = 0
         }
-        
-        console.log("Animating")
     }
 }
 
