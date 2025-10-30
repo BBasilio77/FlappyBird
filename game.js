@@ -52,10 +52,21 @@ export default class Game {
                 this.setState(GameState.READY)
             }
         }
+        else if (this.state == GameState.READY) {
+            if (event.key == " ") {
+                this.setState(GameState.PLAYING)
+        
+            }
+        }
+        else if (this.state == GameState.PLAYING) {
+            if (event.key == " ") {
+                this.bird.jump()
+            }
+        }
     }
 
     setState(state) {
-      console.log(`Game changing to state ${state}`)
+      console.log(`Game changing to state "${state}"`)
         if (state == GameState.INTRO){
             //this.bird.prepareForGame()
         }
@@ -63,20 +74,20 @@ export default class Game {
         else if (state == GameState.READY){
             this.bird.prepareForGame()
         }
-            /*
-        else if (state == State.HITPIPE) {
             
+        else if (state == GameState.PLAYING) {
+            this.bird.startToFly()
         }
-        else if (state == State.HITGROUND) {
+        //else if (state == State.HITGROUND) {
             
-        }
-        else if (state == State.FALLING) {
+      //  }
+       // else if (state == State.FALLING) {
             
-        }
-        else if (state == State.ASCENDING) {
+       // }
+       // else if (state == State.ASCENDING) {
             
-        }
-        */
+       // }
+       // */
         this.state = state
     }
 }

@@ -28,14 +28,14 @@ export class Bird {
     draw(ctx) {
         ctx.fillStyle = "rgba(0, 0, 0, 1)"
         ctx.beginPath()
-        ctx.arc(this.x, 360, this.radius, 0, Math.PI * 2)
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
         ctx.fill()
     }
     animate() {
         this.x += this.dx
         this.y += this.dy
         if (this.isgravity) {
-                this.dy += 1
+            this.dy += 0.1
 
         }
         //this.radius = (this.radius + 1)%100
@@ -69,7 +69,7 @@ export class Bird {
 
 
     setState(state) {
-        console.log(`Bird changing to state ${state}`)
+        console.log(`Bird changing to state "${state}"`)
         
         if (state == BirdState.IDLE){
             this.x = 480
@@ -92,7 +92,7 @@ export class Bird {
             this.isflying = true 
         }
         else if (state == BirdState.ASCENDING) {
-            this.dy = 10
+            this.dy = -4
             this.isgravity = true      
         }
         this.state = state
