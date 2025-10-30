@@ -17,7 +17,8 @@ export default class Game {
         document.addEventListener("keydown", this.keydown.bind(this))
         //document.addEventListener("keyup", this.keyup.bind(this))
         this.bird = new Bird()
-        this.background = new Background('MinecraftBg.png', 2)
+        this.background = new Background('MinecraftBg.png', 1)
+        this.floor = new Background('MinecraftFloor.png', 2)
         this.setState(GameState.INTRO)
     }
     run() {
@@ -29,6 +30,8 @@ export default class Game {
        
         this.background.draw(this.ctx)
         this.background.animate()
+        this.floor.draw(this.ctx)
+        this.floor.animate()
        
         if (this.state == GameState.INTRO) {
             this.ctx.font = "30px serif"
