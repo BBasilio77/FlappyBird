@@ -92,7 +92,7 @@ export class Bird {
             this.isflying = true 
         }
         else if (state == BirdState.ASCENDING) {
-            this.dy = -4
+            this.dy = -2
             this.isgravity = true      
         }
         this.state = state
