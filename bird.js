@@ -30,6 +30,8 @@ export class Bird {
         ctx.beginPath()
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
         ctx.fill()
+        ctx.fillText(`${this.state}`,70, 100)
+        ctx.fillText(`dx ${this.dx} dy ${this.dy}`, 70, 130)
     }
     animate() {
         this.x += this.dx
@@ -43,6 +45,10 @@ export class Bird {
             this.statecounter -= 1
             if (this.statecounter == 0) {
                 this.setState(BirdState.READY)
+            }
+        } else if (this.state == BirdState.ASCENDING) {
+            if (this.dy >= 0) {
+                this.setState(BirdState.FALLING)
             }
         }
       
@@ -75,7 +81,8 @@ export class Bird {
             this.x = 480
             this.y = 360
             this.dx = 0
-             this.dy = 0
+            this.dy = 0
+            this.isgravity = false
             this.isflying = false
         }
         else if (state == BirdState.GETTINGREADY) {
@@ -87,18 +94,18 @@ export class Bird {
             this.dx = 0
         }
         else if (state == BirdState.FALLING) {
-            this.dy = -2
+            if (this.state == BirdState.READY) {
+                this.dy = 0
+            }
             this.isgravity = true
             this.isflying = true 
         }
         else if (state == BirdState.ASCENDING) {
-            this.dy = -2
+            this.dy = -3
             this.isgravity = true
             /*I made the checker here, the bird successfully switches between states, although the bird didn't move until
             I switched the DY in the falling state to -2. another problem is implementing the FALLING state.*/
-            if (this.dy <= 0) {
-            this.setState(BirdState.FALLING)  
-            }
+
         }
         
         
