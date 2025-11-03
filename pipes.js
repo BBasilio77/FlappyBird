@@ -17,7 +17,11 @@ export class Pipe {
     }
     
     draw(ctx) {
-        ctx.drawImage(this.img, this.x, this.y, 960, 360)
+        ctx.save()
+        ctx.translate(this.x, this.y)
+        ctx.scale(2, 2)
+        ctx.drawImage(this.img, 0, 0)
+        ctx.restore()
     }
     animate() {
         this.x += this.dx
