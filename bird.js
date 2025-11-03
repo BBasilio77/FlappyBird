@@ -87,14 +87,23 @@ export class Bird {
             this.dx = 0
         }
         else if (state == BirdState.FALLING) {
-            this.dy = 0
+            this.dy = -2
             this.isgravity = true
             this.isflying = true 
         }
         else if (state == BirdState.ASCENDING) {
             this.dy = -2
-            this.isgravity = true      
+            this.isgravity = true
+            /*I made the checker here, the bird successfully switches between states, although the bird didn't move until
+            I switched the DY in the falling state to -2. another problem is implementing the FALLING state.*/
+            if (this.dy <= 0) {
+            this.setState(BirdState.FALLING)  
+            }
         }
+        
+        
+        //for ascending, to change to falling state, check to see if DY is + or -
+        //When the APEX is reached, switch to falling state
         this.state = state
     }
 }  
