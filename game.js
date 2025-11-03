@@ -19,6 +19,7 @@ export default class Game {
         this.bird = new Bird()
         this.background = new Background('MinecraftBg.png', 1)
         this.floor = new Background('MinecraftFloor.png', 2)
+        this.pipe = new Pipe()
         this.setState(GameState.INTRO)
     }
     run() {
@@ -40,7 +41,8 @@ export default class Game {
             this.ctx.fillText("press SPACE to begin...", 350, 500)
         }
 
-
+        this.pipe.draw(this.ctx)
+        this.pipe.animate()
         this.bird.draw(this.ctx)
         this.bird.animate()
         window.requestAnimationFrame(this.frame.bind(this))
@@ -77,6 +79,7 @@ export default class Game {
             
         else if (state == GameState.PLAYING) {
             this.bird.startToFly()
+            this.pipe.startmoving()
         }
         //else if (state == State.HITGROUND) {
             
