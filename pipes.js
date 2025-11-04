@@ -39,7 +39,7 @@ export class Pipe {
         console.log(`Pipe changing to state ${state}`)
         
         if (state == PipeState.IDLE){
-            this.x = 480
+            this.x = 800
             this.y = 360
             this.dx = 0
              this.dy = 0
