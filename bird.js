@@ -23,15 +23,16 @@ export class Bird {
         this.isflying = false
         this.isgravity = false
         this.setState(BirdState.IDLE)
+        this.img = new Image();
+        this.img.src = 'bird.jpg';
+        this.img.src = 'SteveHead.jpg';
     }
     
     draw(ctx) {
-        ctx.fillStyle = "rgba(0, 0, 0, 1)"
-        ctx.beginPath()
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
-        ctx.fill()
-        ctx.fillText(`${this.state}`,70, 100)
-        ctx.fillText(`dx ${this.dx} dy ${this.dy}`, 70, 130)
+        ctx.drawImage(this.img, this.x, this.y, 32, 32)
+
+       
+  
     }
     animate() {
         this.x += this.dx

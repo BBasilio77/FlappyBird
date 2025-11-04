@@ -41,7 +41,7 @@ export class Pipe {
              this.dy = 0
         }
         else if (state == PipeState.PLAYING) {
-            this.dx = -5
+            this.dx = -2
         }
         
         else if (state == PipeState.GAMEOVER) {
