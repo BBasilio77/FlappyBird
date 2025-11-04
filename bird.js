@@ -18,6 +18,7 @@ export class Bird {
         this.dx = 0
         this.dy = 0
         this.statecounter = 0
+        this.bobangle = 0
         //angle goes here
         //flap sequence here
         this.isflying = false
@@ -25,12 +26,17 @@ export class Bird {
         this.setState(BirdState.IDLE)
         this.img = new Image();
         this.img.src = 'bird.jpg';
-        this.img.src = 'SteveHead.jpg';
+        this.img.src = 'Minecraft-Creeper-Head.jpg';
     }
     
     draw(ctx) {
-        ctx.drawImage(this.img, this.x, this.y, 32, 32)
-
+       
+        ctx.save()
+        ctx.translate(this.x, this.y)
+        ctx.rotate(((this.bobangle * 4) * Math.PI) / 180)
+        ctx.drawImage(this.img, 0, 0, 40, 40)
+        ctx.restore()
+        
        
   
     }
@@ -41,6 +47,9 @@ export class Bird {
             this.dy += 0.1
 
         }
+
+        this.bobangle = (this.bobangle * 0.90) + (this.dy * 0.10)
+
         //this.radius = (this.radius + 1)%100
         if (this.state == BirdState.GETTINGREADY) {
             this.statecounter -= 1
