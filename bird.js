@@ -44,7 +44,7 @@ export class Bird {
         this.x += this.dx
         this.y += this.dy
         if (this.isgravity) {
-            this.dy += 0.1
+            this.dy += 0.15
 
         }
 
