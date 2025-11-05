@@ -25,8 +25,8 @@ export class Bird {
         this.isgravity = false
         this.setState(BirdState.IDLE)
         this.img = new Image();
-        this.img.src = 'bird.jpg';
-        this.img.src = 'Minecraft-Creeper-Head.jpg';
+        this.img.src = 'bird.webp';
+        this.img.src = 'yoshibird.webp';
     }
     
     draw(ctx) {
