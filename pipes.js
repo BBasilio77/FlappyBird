@@ -8,7 +8,8 @@ const PipeState = {
 export class Pipe {
     constructor() {
         this.x = 480
-        this.y = 0
+        this.yCenter = 0
+        this.opening = 200
         this.dx = 0
         this.dy = 0
         this.img = new Image()
@@ -18,14 +19,20 @@ export class Pipe {
     
     draw(ctx) {
         ctx.save()
-        ctx.translate(this.x, this.y)
+        ctx.translate(this.x, this.yCenter)
         ctx.scale(2, 2)
+        ctx.drawImage(this.img, 0, 0)
+        ctx.restore()
+
+        ctx.save()
+        ctx.translate(this.x, this.yCenter)
+        ctx.scale(2, -2)
         ctx.drawImage(this.img, 0, 0)
         ctx.restore()
     }
     animate() {
         this.x += this.dx
-        this.y += this.dy
+        this.yCenter += this.dy
     }
 
     startmoving(){
@@ -40,7 +47,7 @@ export class Pipe {
         
         if (state == PipeState.IDLE){
             this.x = 800
-            this.y = 360
+            this.yCenter = 360
             this.dx = 0
              this.dy = 0
         }
