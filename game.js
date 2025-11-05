@@ -17,7 +17,7 @@ export default class Game {
         document.addEventListener("keydown", this.keydown.bind(this))
         //document.addEventListener("keyup", this.keyup.bind(this))
         this.bird = new Bird()
-        this.background = new Background('MinecraftBg.png', 2)
+        this.background = new Background('newbackground.webp', 2)
         this.floor = new Background('MinecraftFloor.png', 2)
         this.pipe = new Pipe()
         this.setState(GameState.INTRO)
