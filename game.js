@@ -1,7 +1,8 @@
 
 import {Bird} from './bird.js'
 import {Background} from './Background.js'
-import {Pipe} from './pipes.js'
+import { Pipe } from './pipes.js'
+import {Floor} from './floor.js'
 
 const GameState = {
     INTRO: "intro",
@@ -18,7 +19,7 @@ export default class Game {
         //document.addEventListener("keyup", this.keyup.bind(this))
         this.bird = new Bird()
         this.background = new Background('newbackground.webp', 1)
-        this.floor = new Background('newFloorjs.png', 2)
+        this.floor = new Floor('newFloorjs.png', 2)
         this.pipe = new Pipe()
         this.setState(GameState.INTRO)
     }
