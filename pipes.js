@@ -19,13 +19,13 @@ export class Pipe {
     
     draw(ctx) {
         ctx.save()
-        ctx.translate(this.x, this.yCenter)
+        ctx.translate(this.x, this.yCenter +(this.opening/2))
         ctx.scale(2, 2)
         ctx.drawImage(this.img, 0, 0)
         ctx.restore()
 
         ctx.save()
-        ctx.translate(this.x, this.yCenter)
+        ctx.translate(this.x, this.yCenter -(this.opening/2))
         ctx.scale(2, -2)
         ctx.drawImage(this.img, 0, 0)
         ctx.restore()

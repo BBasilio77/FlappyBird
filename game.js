@@ -18,7 +18,7 @@ export default class Game {
         //document.addEventListener("keyup", this.keyup.bind(this))
         this.bird = new Bird()
         this.background = new Background('newbackground.webp', 1)
-        this.floor = new Background('newFloorjs.png', 2)
+        this.floor = new Background('FloorNew.png', 2)
         this.pipe = new Pipe()
         this.setState(GameState.INTRO)
     }
