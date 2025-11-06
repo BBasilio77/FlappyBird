@@ -1,7 +1,8 @@
 
 import {Bird} from './bird.js'
 import {Background} from './Background.js'
-import {Pipe} from './pipes.js'
+import { Pipe } from './pipes.js'
+import {Floor} from './floor.js'
 
 const GameState = {
     INTRO: "intro",
