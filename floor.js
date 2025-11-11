@@ -10,11 +10,12 @@ export class Floor {
     }
 
     draw(ctx) {
-        ctx.drawImage(this.img, this.x, (720 - this.img.height), 960, 100)
-        ctx.drawImage(this.img, this.x + 960, (720 - this.img.height), 960, 100)
+        ctx.drawImage(this.img, this.x, (720 - this.img.height))
+        ctx.drawImage(this.img, this.x + 960, (720 - this.img.height))
     }
-    floorheight() {
-        return (720 - this.img.height)
+    boundingBox() {
+        //return (720 - this.img.height)
+        return { x: 0, width: 960, y: 720-this.img.height, height: this.img.height }
     }
 
     animate(){
@@ -24,6 +25,10 @@ export class Floor {
             this.x = 0
         }
     }
+
+
+
+
 }
 
 

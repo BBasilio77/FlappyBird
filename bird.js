@@ -36,10 +36,11 @@ export class Bird {
         ctx.rotate(((this.bobangle * 4) * Math.PI) / 180)
         ctx.drawImage(this.img, 0, 0, 40, 40)
         ctx.restore()
-        
-       
-  
     }
+    boundingBox() {
+        return { x: 0, width: 40, y: 0, height: 40 }
+    }
+
     animate() {
         this.x += this.dx
         this.y += this.dy

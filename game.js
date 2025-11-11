@@ -19,7 +19,7 @@ export default class Game {
         //document.addEventListener("keyup", this.keyup.bind(this))
         this.bird = new Bird()
         this.background = new Background('newbackground.webp', 1)
-        this.floor = new Background('FloorNew.png', 2)
+        this.floor = new Floor('FloorNew.png', 2)
         this.pipe = new Pipe()
         this.setState(GameState.INTRO)
     }
@@ -27,6 +27,20 @@ export default class Game {
         console.log ("running the game")
         this.frame()
     }
+
+    checkCollision(obj1, obj2) {
+       if (
+        (obj1.x < (obj2.x + obj2.width)) &&
+        (obj1.x + (obj1.width > obj2.x)) &&
+        (obj1.y < (obj2.y + obj2.height)) &&
+        (obj1.y + (obj1.height > obj2.y))
+    ) {
+        return true
+    } else {
+        return false
+    }
+    }
+
     frame() {
         this.ctx.clearRect(0, 0, 960, 720)
        
@@ -46,9 +60,15 @@ export default class Game {
         this.pipe.animate()
         this.bird.draw(this.ctx)
         this.bird.animate()
+
+        //console.log(this.bird.boundingBox())
+        //console.log(this.floor.boundingBox())
+        if (this.checkCollision(this.bird.boundingBox(), this.floor.boundingBox() )) {
+            console.log("bird hit floor")
+        }
+
         window.requestAnimationFrame(this.frame.bind(this))
     }
-
     keydown(event) {
         if (this.state == GameState.INTRO) {
             if (event.key == " ") {
