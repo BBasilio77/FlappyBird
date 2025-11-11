@@ -7,7 +7,8 @@ import {Floor} from './floor.js'
 const GameState = {
     INTRO: "intro",
     READY: "ready",
-    PLAYING: "playing"
+    PLAYING: "playing",
+    GAMEOVER: "gameover"
 }
 
 export default class Game {
@@ -31,9 +32,9 @@ export default class Game {
     checkCollision(obj1, obj2) {
        if (
         (obj1.x < (obj2.x + obj2.width)) &&
-        (obj1.x + (obj1.width > obj2.x)) &&
+        ((obj1.x + obj1.width) > obj2.x) &&
         (obj1.y < (obj2.y + obj2.height)) &&
-        (obj1.y + (obj1.height > obj2.y))
+        ((obj1.y + obj1.height) > obj2.y)
     ) {
         return true
     } else {
@@ -44,8 +45,12 @@ export default class Game {
     frame() {
         this.ctx.clearRect(0, 0, 960, 720)
        
+       
+       
         this.background.draw(this.ctx)
         this.background.animate()
+       
+       
         this.floor.draw(this.ctx)
         this.floor.animate()
        
@@ -65,6 +70,7 @@ export default class Game {
         //console.log(this.floor.boundingBox())
         if (this.checkCollision(this.bird.boundingBox(), this.floor.boundingBox() )) {
             console.log("bird hit floor")
+            this.setState(GameState.GAMEOVER)
         }
 
         window.requestAnimationFrame(this.frame.bind(this))
@@ -102,9 +108,12 @@ export default class Game {
             this.bird.startToFly()
             this.pipe.startmoving()
         }
-        //else if (state == State.HITGROUND) {
-            
-      //  }
+        else if (state == GameState.GAMEOVER) {
+            this.pipe.stopmoving()
+            this.bird.hittingTheGround()
+            this.floor.gameover()
+            this.background.notmoving()
+       }
        // else if (state == State.FALLING) {
             
        // }

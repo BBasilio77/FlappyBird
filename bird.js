@@ -38,7 +38,7 @@ export class Bird {
         ctx.restore()
     }
     boundingBox() {
-        return { x: 0, width: 40, y: 0, height: 40 }
+        return { x: this.x, width: 40, y: this.y, height: 40 }
     }
 
     animate() {
@@ -118,7 +118,9 @@ export class Bird {
             I switched the DY in the falling state to -2. another problem is implementing the FALLING state.*/
 
         }
-        
+         else if (state == BirdState.HITGROUND) {
+            this.dy = 0
+        }
         
         //for ascending, to change to falling state, check to see if DY is + or -
         //When the APEX is reached, switch to falling state
