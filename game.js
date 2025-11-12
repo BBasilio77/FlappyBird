@@ -15,15 +15,10 @@ export default class Game {
     constructor() {
         const canvas = document.getElementById("game")
         this.ctx = canvas.getContext("2d")
-        const myFont = new FontFace(
-            '8BIT', // The name you'll use in CSS (font-family)
-            'url("pixel-operator.ttf")', // The URL to your TTF file
-        )
+   
+        
        
-        myFont.load().then(() => {
-            document.fonts.add(myFont);
-            console.log("font loaded")
-        })
+
         document.addEventListener("keydown", this.keydown.bind(this))
         //document.addEventListener("keyup", this.keyup.bind(this))
         this.bird = new Bird()
