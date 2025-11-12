@@ -1,3 +1,7 @@
+const BackgroundState = {
+    MOVING: "moving",
+    NOTMOVING: "notmoving",
+}   
 export class Background {
     constructor(imagefile,speed) {
         this.x = 0
@@ -22,15 +26,28 @@ export class Background {
             this.x = 0
         }
     }
+
+    moving() {
+        this.setState(BackgroundState.MOVING)
+    }
+    notmoving() {
+        this.setState(BackgroundState.NOTMOVING)
+    }
+
+    setState(state){
+        if (state == BackgroundState.MOVING){
+            this.dx = 0
+            this.dy = 0
+        }
+        if (state == BackgroundState.NOTMOVING){
+            this.dx = 0
+        }
+    }
+
+
 }
 
 
 
-const State = {
-    INTRO: "intro",
-    READY: "ready",
-    HITPIPE: "hitpipe",
-    HITGROUND: "hitground",
-    FALLING: "falling",
-    ASCENDING: "ascending",
-}    
+
+ 

@@ -1,3 +1,11 @@
+const FloorState = {
+    INTRO: "intro",
+    PLAYING: "playing",
+    GAMEOVER: "gameover",
+}  
+
+
+
 export class Floor {
     constructor(imagefile,speed) {
         this.x = 0
@@ -26,18 +34,33 @@ export class Floor {
         }
     }
 
+    intro(){
+        this.setState(FloorState.INTRO)
+    }
+    playing(){
+        this.setState(FloorState.PLAYING)
+    }
+    gameover(){
+        this.setState(FloorState.GAMEOVER)
+    }
 
 
+    setState(state) {
+         if (state == FloorState.INTRO){
+            this.dx = 0
+            this.dy = 0
+        }
+        else if (state == FloorState.PLAYING) {
+            this.dx = -2
+        }
+        
+        else if (state == FloorState.GAMEOVER) {
+            this.dx = 0
+        }
+        this.state = state
+    }
 
 }
 
 
-
-const State = {
-    INTRO: "intro",
-    READY: "ready",
-    HITPIPE: "hitpipe",
-    HITGROUND: "hitground",
-    FALLING: "falling",
-    ASCENDING: "ascending",
-}    
+  
