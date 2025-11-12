@@ -1,8 +1,8 @@
 
-import {Bird} from './bird.js'
-import {Background} from './Background.js'
+import { Bird } from './bird.js'
+import { Background } from './Background.js'
 import { Pipe } from './pipes.js'
-import {Floor} from './floor.js'
+import { Floor } from './floor.js'
 
 const GameState = {
     INTRO: "intro",
@@ -15,48 +15,64 @@ export default class Game {
     constructor() {
         const canvas = document.getElementById("game")
         this.ctx = canvas.getContext("2d")
-   
-        
-       
+
+
+
 
         document.addEventListener("keydown", this.keydown.bind(this))
         //document.addEventListener("keyup", this.keyup.bind(this))
         this.bird = new Bird()
         this.background = new Background('newbackground.webp', 1)
-        this.floor = new Floor('FloorNew.png', 2)
-        this.pipe = new Pipe()
+        this.floor = new Floor('Floor2.0.png', 2)
+        this.createPipes()
         this.setState(GameState.INTRO)
     }
+
+    createPipes() {
+        var numberpipes = 5
+        this.pipes = []
+        for (let i = 0; i < numberpipes; i++) {
+            this.pipes[i] = new Pipe(-2, 960 + ((1060 / numberpipes) * i))
+        }
+    }
+
+
+
+
+
     run() {
-        console.log ("running the game")
+        console.log("running the game")
         this.frame()
     }
 
     checkCollision(obj1, obj2) {
-       if (
-        (obj1.x < (obj2.x + obj2.width)) &&
-        ((obj1.x + obj1.width) > obj2.x) &&
-        (obj1.y < (obj2.y + obj2.height)) &&
-        ((obj1.y + obj1.height) > obj2.y)
-    ) {
-        return true
-    } else {
-        return false
-    }
+        if (
+            (obj1.x < (obj2.x + obj2.width)) &&
+            ((obj1.x + obj1.width) > obj2.x) &&
+            (obj1.y < (obj2.y + obj2.height)) &&
+            ((obj1.y + obj1.height) > obj2.y)
+        ) {
+            return true
+        } else {
+            return false
+        }
     }
 
     frame() {
         this.ctx.clearRect(0, 0, 960, 720)
-       
-       
-       
+
+
         this.background.draw(this.ctx)
         this.background.animate()
-       
-       
+
+        for (let i = 0; i < this.pipes.length; i++) {
+            this.pipes[i].draw(this.ctx)
+            this.pipes[i].animate()
+        }
+
         this.floor.draw(this.ctx)
         this.floor.animate()
-       
+
         if (this.state == GameState.INTRO) {
             this.ctx.font = "30px cursive"
             this.ctx.fillStyle = "rgba(255, 0, 0, 1)"
@@ -67,24 +83,23 @@ export default class Game {
             this.ctx.fillStyle = "rgba(8, 0, 255, 1)"
             this.ctx.fillText("press SPACE to begin...", 350, 500)
         }
-        
 
 
-        this.pipe.draw(this.ctx)
-        this.pipe.animate()
+
+
         this.bird.draw(this.ctx)
         this.bird.animate()
 
         //console.log(this.bird.boundingBox())
         //console.log(this.floor.boundingBox())
-        if (this.checkCollision(this.bird.boundingBox(), this.floor.boundingBox() )) {
+        if (this.checkCollision(this.bird.boundingBox(), this.floor.boundingBox())) {
             console.log("bird hit floor")
             this.setState(GameState.GAMEOVER)
         }
 
         window.requestAnimationFrame(this.frame.bind(this))
     }
-    
+
     keydown(event) {
         if (this.state == GameState.INTRO) {
             if (event.key == " ") {
@@ -94,7 +109,7 @@ export default class Game {
         else if (this.state == GameState.READY) {
             if (event.key == " ") {
                 this.setState(GameState.PLAYING)
-        
+
             }
         }
         else if (this.state == GameState.PLAYING) {
@@ -105,32 +120,37 @@ export default class Game {
     }
 
     setState(state) {
-      console.log(`Game changing to state "${state}"`)
-        if (state == GameState.INTRO){
+        console.log(`Game changing to state "${state}"`)
+        if (state == GameState.INTRO) {
             //this.bird.prepareForGame()
         }
 
-        else if (state == GameState.READY){
+        else if (state == GameState.READY) {
             this.bird.prepareForGame()
         }
-            
+
         else if (state == GameState.PLAYING) {
             this.bird.startToFly()
-            this.pipe.startmoving()
+            for (let i = 0; i < this.pipes.length; i++) {
+                this.pipes[i].startmoving()
+            }
+
         }
         else if (state == GameState.GAMEOVER) {
-            this.pipe.stopmoving()
+            for (let i = 0; i < this.pipes.length; i++){
+            this.pipes[i].stopmoving()
+            }
             this.bird.hittingTheGround()
             this.floor.gameover()
             this.background.notmoving()
-       }
-       // else if (state == State.FALLING) {
-            
-       // }
-       // else if (state == State.ASCENDING) {
-            
-       // }
-       // */
+        }
+        // else if (state == State.FALLING) {
+
+        // }
+        // else if (state == State.ASCENDING) {
+
+        // }
+        // */
         this.state = state
     }
 }
