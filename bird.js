@@ -82,6 +82,7 @@ export class Bird {
     jump() {
         this.setState(BirdState.ASCENDING)
     }
+
     
 
 

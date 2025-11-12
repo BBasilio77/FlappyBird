@@ -12,9 +12,17 @@ const GameState = {
 
 export default class Game {
     constructor() {
-        
         const canvas = document.getElementById("game")
         this.ctx = canvas.getContext("2d")
+        const myFont = new FontFace(
+            '8BIT', // The name you'll use in CSS (font-family)
+            'url("pixel-operator.ttf")', // The URL to your TTF file
+        )
+       
+        myFont.load().then(() => {
+            document.fonts.add(myFont);
+            console.log("font loaded")
+        })
         document.addEventListener("keydown", this.keydown.bind(this))
         //document.addEventListener("keyup", this.keyup.bind(this))
         this.bird = new Bird()
@@ -50,11 +58,17 @@ export default class Game {
         this.floor.animate()
        
         if (this.state == GameState.INTRO) {
-            this.ctx.font = "30px serif"
-            this.ctx.fillStyle = "rgba(0, 0, 0, 1"
-            this.ctx.fillText("FLAPPY BIRD", 380, 250)
+            this.ctx.font = "30px cursive"
+            this.ctx.fillStyle = "rgba(255, 0, 0, 1)"
+            this.ctx.fillText("Flappy", 420, 250)
+            this.ctx.font = "30px cursive"
+            this.ctx.fillStyle = "rgba(255, 238, 0, 1)"
+            this.ctx.fillText("Bird", 520, 250)
+            this.ctx.fillStyle = "rgba(8, 0, 255, 1)"
             this.ctx.fillText("press SPACE to begin...", 350, 500)
         }
+        
+
 
         this.pipe.draw(this.ctx)
         this.pipe.animate()
@@ -69,6 +83,7 @@ export default class Game {
 
         window.requestAnimationFrame(this.frame.bind(this))
     }
+    
     keydown(event) {
         if (this.state == GameState.INTRO) {
             if (event.key == " ") {
