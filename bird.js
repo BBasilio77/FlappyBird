@@ -33,7 +33,11 @@ export class Bird {
        
         ctx.save()
         ctx.translate(this.x, this.y)
-        ctx.rotate(((this.bobangle * 4) * Math.PI) / 180)
+       if(this.state != BirdState.HITGROUND) { ctx.rotate(((this.bobangle * 4) * Math.PI) / 180) }
+       else {
+        ctx.scale (1, 0.2)
+        ctx.translate (0, 40 * 0.8)
+       }
         ctx.drawImage(this.img, 0, 0, 40, 40)
         ctx.restore()
     }
@@ -119,6 +123,11 @@ export class Bird {
             I switched the DY in the falling state to -2. another problem is implementing the FALLING state.*/
 
         }
+
+        else if (state == BirdState.HITPIPE) {
+            this.state = BirdState.FALLING
+        }
+
          else if (state == BirdState.HITGROUND) {
             this.dy = 0
         }

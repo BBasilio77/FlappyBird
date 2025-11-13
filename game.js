@@ -8,6 +8,7 @@ const GameState = {
     INTRO: "intro",
     READY: "ready",
     PLAYING: "playing",
+    HITPIPE: "hitpipe",
     GAMEOVER: "gameover"
 }
 
@@ -96,6 +97,16 @@ export default class Game {
             console.log("bird hit floor")
             this.setState(GameState.GAMEOVER)
         }
+        for (let i = 0; i < this.pipes.length; i++) {
+            if (this.checkCollision(this.bird.boundingBox(), this.pipes[i].upperboundingBox())) {
+                console.log("bird hit pipe")
+                this.setState(GameState.HITPIPE)
+            }
+            if (this.checkCollision(this.bird.boundingBox(), this.pipes[i].lowerboundingBox())) {
+                console.log("bird hit pipe")
+                this.setState(GameState.HITPIPE)
+            }
+        }
 
         window.requestAnimationFrame(this.frame.bind(this))
     }
@@ -136,6 +147,16 @@ export default class Game {
             }
 
         }
+
+        else if (state == GameState.HITPIPE) {
+            for (let i = 0; i < this.pipes.length; i++){
+            this.pipes[i].stopmoving()
+            }
+            this.bird.hittingThePipe()
+            this.floor.gameover()
+            this.background.notmoving()
+        }
+
         else if (state == GameState.GAMEOVER) {
             for (let i = 0; i < this.pipes.length; i++){
             this.pipes[i].stopmoving()
