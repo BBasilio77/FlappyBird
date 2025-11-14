@@ -38,11 +38,11 @@ export class Bird {
         ctx.scale (1, 0.2)
         ctx.translate (0, 40 * 0.8)
        }
-        ctx.drawImage(this.img, 0, 0, 40, 40)
+        ctx.drawImage(this.img, -20, -20, 40, 40)
         ctx.restore()
     }
     boundingBox() {
-        return { x: this.x, width: 40, y: this.y, height: 40 }
+        return { x: this.x -20, width: 40, y: this.y -20, height: 40 }
     }
 
     animate() {
