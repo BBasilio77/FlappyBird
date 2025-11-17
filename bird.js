@@ -119,9 +119,9 @@ export class Bird {
         else if (state == BirdState.ASCENDING) {
             this.dy = -3
             this.isgravity = true
-            /*I made the checker here, the bird successfully switches between states, although the bird didn't move until
-            I switched the DY in the falling state to -2. another problem is implementing the FALLING state.*/
-
+        }
+        else if (state == BirdState.HITPIPE) {
+            this.dy = +1
         }
 
         else if (state == BirdState.HITPIPE) {
