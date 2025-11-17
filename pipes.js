@@ -19,16 +19,24 @@ export class Pipe {
     
     draw(ctx) {
         ctx.save()
-        ctx.translate(this.x, this.yCenter +(this.opening/2))
+        ctx.translate(this.x, this.yCenter + (this.opening/2))
         ctx.scale(2, 2)
         ctx.drawImage(this.img, 0, 0)
         ctx.restore()
 
         ctx.save()
-        ctx.translate(this.x, this.yCenter -(this.opening/2))
+        ctx.translate(this.x, this.yCenter - (this.opening/2))
         ctx.scale(2, -2)
         ctx.drawImage(this.img, 0, 0)
         ctx.restore()
+    }
+    upperboundingBox() {
+        //return (720 - this.img.height)
+        return { x: this.x, y: 720 - this.img.height, width: 960, height: this.img.height }
+    }
+    lowerboundingBox() {
+        //return (720 - this.img.height)
+        return { x: this.x, y: 720 - this.img.height, width: 960, height: this.img.height }
     }
     animate() {
         this.x += this.dx
