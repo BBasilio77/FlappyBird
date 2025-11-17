@@ -6,6 +6,7 @@ import { Floor } from './floor.js'
 
 const GameState = {
     INTRO: "intro",
+    GETTINGREADY: "gettingready",
     READY: "ready",
     PLAYING: "playing",
     HITPIPE: "hitpipe",
@@ -84,6 +85,25 @@ export default class Game {
             this.ctx.fillStyle = "rgba(8, 0, 255, 1)"
             this.ctx.fillText("press SPACE to begin...", 350, 500)
         }
+        else if (this.state == GameState.READY) {
+            this.ctx.font = "30px cursive"
+            this.ctx.fillStyle = "rgba(255, 0, 0, 1)"
+            this.ctx.fillText("Press", 420, 250)
+            this.ctx.font = "30px cursive"
+            this.ctx.fillStyle = "rgba(255, 255, 255, 1)"
+            this.ctx.fillText("Press SPACEBAR to jump", 420, 250)
+           // this.ctx.font = "30px cursive"
+           // this.ctx.fillStyle = "rgba(255, 0, 0, 1)"
+           // this.ctx.fillText("Press SPACEBAR to jump", 420, 250)
+           // this.ctx.font = "30px cursive"
+           // this.ctx.fillStyle = "rgba(255, 0, 0, 1)"
+            //this.ctx.fillText("Press SPACEBAR to jump", 420, 250)
+        }
+        else if (this.state == GameState.GETTINGREADY) {
+            if (this.bird.birdIsReady()) {
+                this.setState(GameState.READY)
+            }
+        }
 
 
 
@@ -97,10 +117,10 @@ export default class Game {
             console.log("bird hit floor")
             this.setState(GameState.HITGROUND)
         }
-        else if (this.checkCollision(this.bird.boundingBox(), this.pipe.lowerboundingBox() )) {
-            console.log("bird hit lower pipe")
-            this.setState(GameState.HITGROUND)
-        }
+        //else if (this.checkCollision(this.bird.boundingBox(), this.pipe.lowerboundingBox() )) {
+        //    console.log("bird hit lower pipe")
+        //    this.setState(GameState.HITGROUND)
+        //}
         for (let i = 0; i < this.pipes.length; i++) {
             if (this.checkCollision(this.bird.boundingBox(), this.pipes[i].upperboundingBox())) {
                 console.log("bird hit pipe")
@@ -118,7 +138,7 @@ export default class Game {
     keydown(event) {
         if (this.state == GameState.INTRO) {
             if (event.key == " ") {
-                this.setState(GameState.READY)
+                this.setState(GameState.GETTINGREADY)
             }
         }
         else if (this.state == GameState.READY) {
@@ -139,9 +159,12 @@ export default class Game {
         if (state == GameState.INTRO) {
             //this.bird.prepareForGame()
         }
-
-        else if (state == GameState.READY) {
+        else if (state == GameState.GETTINGREADY) {
             this.bird.prepareForGame()
+        }
+            
+        else if (state == GameState.READY) {
+            
         }
 
         else if (state == GameState.PLAYING) {
