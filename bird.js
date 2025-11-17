@@ -33,12 +33,16 @@ export class Bird {
        
         ctx.save()
         ctx.translate(this.x, this.y)
-        ctx.rotate(((this.bobangle * 4) * Math.PI) / 180)
-        ctx.drawImage(this.img, 0, 0, 40, 40)
+       if(this.state != BirdState.HITGROUND) { ctx.rotate(((this.bobangle * 4) * Math.PI) / 180) }
+       else {
+        ctx.scale (1, 0.2)
+        ctx.translate (0, 40 * 0.8)
+       }
+        ctx.drawImage(this.img, -20, -20, 40, 40)
         ctx.restore()
     }
     boundingBox() {
-        return { x: this.x, width: 40, y: this.y, height: 40 }
+        return { x: this.x -20, width: 40, y: this.y -20, height: 40 }
     }
 
     animate() {
@@ -119,6 +123,11 @@ export class Bird {
         else if (state == BirdState.HITPIPE) {
             this.dy = +1
         }
+
+        else if (state == BirdState.HITPIPE) {
+            this.state = BirdState.FALLING
+        }
+
          else if (state == BirdState.HITGROUND) {
             this.dy = 0
         }
