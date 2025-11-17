@@ -19,6 +19,7 @@ export class Bird {
         this.dy = 0
         this.statecounter = 0
         this.bobangle = 0
+        this.bobheight = 0
         //angle goes here
         //flap sequence here
         this.isflying = false
@@ -32,12 +33,13 @@ export class Bird {
     draw(ctx) {
        
         ctx.save()
-        ctx.translate(this.x, this.y)
-       if(this.state != BirdState.HITGROUND) { ctx.rotate(((this.bobangle * 4) * Math.PI) / 180) }
-       else {
-        ctx.scale (1, 0.2)
-        ctx.translate (0, 40 * 0.8)
-       }
+        ctx.translate(this.x, this.y + Math.sin(this.bobheight)*5)
+        if (this.state != BirdState.HITGROUND) {
+            ctx.rotate(((this.bobangle * 4) * Math.PI) / 180)
+        } else {
+            ctx.scale (1, 0.2)
+            ctx.translate (0, 40 * 0.8)
+        }
         ctx.drawImage(this.img, -20, -20, 40, 40)
         ctx.restore()
     }
@@ -49,11 +51,13 @@ export class Bird {
         this.x += this.dx
         this.y += this.dy
         if (this.isgravity) {
-            this.dy += 0.15
+            this.dy += 0.25
 
         }
 
         this.bobangle = (this.bobangle * 0.90) + (this.dy * 0.10)
+        
+        this.bobheight += 0.1
 
         //this.radius = (this.radius + 1)%100
         if (this.state == BirdState.GETTINGREADY) {
@@ -86,6 +90,9 @@ export class Bird {
     jump() {
         this.setState(BirdState.ASCENDING)
     }
+    birdIsReady() {
+        return this.state == BirdState.READY 
+    }
 
     
 
@@ -114,14 +121,17 @@ export class Bird {
                 this.dy = 0
             }
             this.isgravity = true
-            this.isflying = true 
+            this.isflying = true
+
         }
         else if (state == BirdState.ASCENDING) {
-            this.dy = -3
+            this.dy = -4
             this.isgravity = true
+
         }
         else if (state == BirdState.HITPIPE) {
             this.dy = +1
+            this.bobheight = 0
         }
 
         else if (state == BirdState.HITPIPE) {
@@ -131,6 +141,7 @@ export class Bird {
          else if (state == BirdState.HITGROUND) {
             this.dy = 0
             this.dx = 0
+            this.bobheight = 0
         }
         
         //for ascending, to change to falling state, check to see if DY is + or -
