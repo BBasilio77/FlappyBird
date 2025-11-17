@@ -78,26 +78,26 @@ export default class Game {
         if (this.state == GameState.INTRO) {
             this.ctx.font = "30px cursive"
             this.ctx.fillStyle = "rgba(255, 0, 0, 1)"
-            this.ctx.fillText("Flappy", 420, 250)
+            this.ctx.fillText("Flappy", 390, 250)
             this.ctx.font = "30px cursive"
             this.ctx.fillStyle = "rgba(255, 238, 0, 1)"
-            this.ctx.fillText("Bird", 520, 250)
+            this.ctx.fillText("Bird", 495, 250)
             this.ctx.fillStyle = "rgba(8, 0, 255, 1)"
-            this.ctx.fillText("press SPACE to begin...", 350, 500)
+            this.ctx.fillText("press SPACE to begin...", 320, 500)
         }
         else if (this.state == GameState.READY) {
             this.ctx.font = "30px cursive"
             this.ctx.fillStyle = "rgba(255, 0, 0, 1)"
-            this.ctx.fillText("Press", 420, 250)
+            this.ctx.fillText("Press", 300, 250)
             this.ctx.font = "30px cursive"
-            this.ctx.fillStyle = "rgba(255, 255, 255, 1)"
-            this.ctx.fillText("Press SPACEBAR to jump", 420, 250)
-           // this.ctx.font = "30px cursive"
-           // this.ctx.fillStyle = "rgba(255, 0, 0, 1)"
-           // this.ctx.fillText("Press SPACEBAR to jump", 420, 250)
-           // this.ctx.font = "30px cursive"
-           // this.ctx.fillStyle = "rgba(255, 0, 0, 1)"
-            //this.ctx.fillText("Press SPACEBAR to jump", 420, 250)
+            this.ctx.fillStyle = "rgba(30, 0, 255, 1)"
+            this.ctx.fillText(" SPACEBAR", 375, 250)
+            this.ctx.font = "30px cursive"
+            this.ctx.fillStyle = "rgba(255, 242, 0, 1)"
+            this.ctx.fillText("to", 545, 250)
+            this.ctx.font = "30px cursive"
+            this.ctx.fillStyle = "rgba(0, 255, 38, 1)"
+            this.ctx.fillText("jump", 580, 250)
         }
         else if (this.state == GameState.GETTINGREADY) {
             if (this.bird.birdIsReady()) {
