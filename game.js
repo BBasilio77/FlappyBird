@@ -95,11 +95,7 @@ export default class Game {
         //console.log(this.floor.boundingBox())
         if (this.checkCollision(this.bird.boundingBox(), this.floor.boundingBox())) {
             console.log("bird hit floor")
-            this.setState(GameState.HITGROUND)
-        }
-        else if (this.checkCollision(this.bird.boundingBox(), this.pipe.lowerboundingBox() )) {
-            console.log("bird hit lower pipe")
-            this.setState(GameState.HITGROUND)
+            this.setState(GameState.GAMEOVER)
         }
         for (let i = 0; i < this.pipes.length; i++) {
             if (this.checkCollision(this.bird.boundingBox(), this.pipes[i].upperboundingBox())) {
