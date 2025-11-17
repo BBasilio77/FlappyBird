@@ -36,11 +36,19 @@ export class Pipe {
     }
 
     upperboundingBox() {
-        return { x: (this.x + this.xRandom), width: this.img.width, y: this.yCenter -(this.opening/2)-this.img.height, height: this.img.height }
+        return { 
+            x: (this.x + this.xRandom),  
+            y: this.yCenter -(this.opening/2)-this.img.height,
+            width: this.img.width, 
+            height: this.img.height }
     }
 
     lowerboundingBox() {
-        return { x: (this.x + this.xRandom), width: this.img.width, y: this.yCenter +(this.opening/2), height: this.img.height }
+        return { 
+            x: (this.x + this.xRandom), 
+            y: this.yCenter +(this.opening/2), 
+            width: this.img.width, 
+            height: this.img.height }
     }
 
 
@@ -75,6 +83,7 @@ export class Pipe {
         
         else if (state == PipeState.GAMEOVER) {
             this.dx = 0
+            this.dy = 0
         }
         this.state = state
     }

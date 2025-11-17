@@ -130,6 +130,7 @@ export class Bird {
 
          else if (state == BirdState.HITGROUND) {
             this.dy = 0
+            this.dx = 0
         }
         
         //for ascending, to change to falling state, check to see if DY is + or -
