@@ -8,7 +8,7 @@ const PipeState = {
 export class Pipe {
     constructor(speed, startingPOS) {
         this.startingPOS = startingPOS
-        this.yCenter = 0
+        this.y = 0
         this.opening = 200
         this.dx = speed
         this.dy = 0
@@ -22,13 +22,13 @@ export class Pipe {
     draw(ctx) {
         if (this.state != PipeState.IDLE) {
         ctx.save()
-        ctx.translate((this.x + this.xRandom), this.yCenter +(this.opening/2))
+        ctx.translate((this.x + this.xRandom), this.y +(this.opening/2))
         ctx.scale(2, 2)
         ctx.drawImage(this.img, 0, 0)
         ctx.restore()
 
         ctx.save()
-        ctx.translate((this.x + this.xRandom), this.yCenter -(this.opening/2))
+        ctx.translate((this.x + this.xRandom), this.y -(this.opening/2))
         ctx.scale(2, -2)
         ctx.drawImage(this.img, 0, 0)
         ctx.restore()
@@ -38,7 +38,7 @@ export class Pipe {
     upperboundingBox() {
         return { 
             x: (this.x + this.xRandom),  
-            y: this.yCenter -(this.opening/2)-this.img.height,
+            y: this.y -(this.opening/2)-this.img.height,
             width: this.img.width, 
             height: this.img.height }
     }
@@ -46,18 +46,19 @@ export class Pipe {
     lowerboundingBox() {
         return { 
             x: (this.x + this.xRandom), 
-            y: this.yCenter +(this.opening/2), 
+            y: this.y +(this.opening/2), 
             width: this.img.width, 
             height: this.img.height }
     }
 
 
     animate() {
-       this.yCenter += this.dy
+       this.y += this.dy
         this.x += this.dx
         this.x = (this.x + this.dx)
-        if(this.x <= -200){
-            this.x += 1260
+         if(this.x <= -200){
+            this.x +=1260 
+            this.yRandom = Math.random()*400-200
         }
     }
 
@@ -73,7 +74,7 @@ export class Pipe {
         
         if (state == PipeState.IDLE){
             this.x = this.startingPOS
-            this.yCenter = 160+Math.random()*400
+            this.y = 160+Math.random()*400
             this.dx = 0
             this.xRandom = 50+Math.random()*100
         }

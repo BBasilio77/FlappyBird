@@ -29,24 +29,31 @@ export class Bird {
         this.img.src = 'bird.webp';
         this.img.src = 'yoshibird.webp';
     }
-    
+
     draw(ctx) {
-       
+
         ctx.save()
-        ctx.translate(this.x, this.y + Math.sin(this.bobheight)*5)
+        
+        ctx.translate(this.x, this.y)
+        if (this.isflying) {
+            ctx.translate(0, Math.sin(this.bobheight) * 5)
+        }
         if (this.state != BirdState.HITGROUND) {
             ctx.rotate(((this.bobangle * 4) * Math.PI) / 180)
         } else {
-            ctx.scale (1, 0.2)
-            ctx.translate (0, 40 * 0.8)
+            ctx.scale(1, 0.2)
+            ctx.translate(0, 80 * 0.8) //FIXME figure out maths
         }
         ctx.drawImage(this.img, -20, -20, 40, 40)
+
+        
         ctx.restore()
     }
+
     boundingBox() {
-        return { x: this.x -20, width: 40, y: this.y -20, height: 40 }
+        return { x: this.x - 20, width: 40, y: this.y - 20, height: 40 }
     }
-    
+
     animate() {
         this.x += this.dx
         this.y += this.dy
@@ -56,7 +63,7 @@ export class Bird {
         }
 
         this.bobangle = (this.bobangle * 0.90) + (this.dy * 0.10)
-        
+
         this.bobheight += 0.1
 
         //this.radius = (this.radius + 1)%100
@@ -70,13 +77,13 @@ export class Bird {
                 this.setState(BirdState.FALLING)
             }
         }
-      
+
     }
 
-    prepareForGame(){
+    prepareForGame() {
         this.setState(BirdState.GETTINGREADY)
     }
-    startToFly(){
+    startToFly() {
         this.setState(BirdState.FALLING)
     }
     hittingThePipe() {
@@ -91,16 +98,16 @@ export class Bird {
         this.setState(BirdState.ASCENDING)
     }
     birdIsReady() {
-        return this.state == BirdState.READY 
+        return this.state == BirdState.READY
     }
 
-    
+
 
 
     setState(state) {
         console.log(`Bird changing to state "${state}"`)
-        
-        if (state == BirdState.IDLE){
+
+        if (state == BirdState.IDLE) {
             this.x = 480
             this.y = 360
             this.dx = 0
@@ -111,10 +118,12 @@ export class Bird {
         else if (state == BirdState.GETTINGREADY) {
             this.dx = -5
             this.statecounter = 60
+            this.isflying = true
         }
-        
+
         else if (state == BirdState.READY) {
             this.dx = 0
+            this.isflying = true
         }
         else if (state == BirdState.FALLING) {
             if (this.state == BirdState.READY) {
@@ -129,29 +138,29 @@ export class Bird {
             this.isgravity = true
 
         }
-        else if (state == BirdState.HITPIPE) {
-            this.dy = +1
-            this.bobheight = 0
-        }
 
         else if (state == BirdState.HITPIPE) {
             this.state = BirdState.FALLING
+            this.bobheight = 0
+            this.isflying = false
         }
 
-         else if (state == BirdState.HITGROUND) {
+        else if (state == BirdState.HITGROUND) {
             this.dy = 0
             this.dx = 0
             this.bobheight = 0
+            this.isgravity = false
+            this.isflying = false
         }
-        
+
         //for ascending, to change to falling state, check to see if DY is + or -
         //When the APEX is reached, switch to falling state
         this.state = state
     }
-}  
-        
-       
-    
+}
+
+
+
 
 
 

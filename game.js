@@ -22,7 +22,6 @@ export default class Game {
 
 
         document.addEventListener("keydown", this.keydown.bind(this))
-        //document.addEventListener("keyup", this.keyup.bind(this))
         this.bird = new Bird()
         this.background = new Background('newbackground.webp', 1)
         this.floor = new Floor('Floor2.0.png', 2)
@@ -113,25 +112,28 @@ export default class Game {
 
         //console.log(this.bird.boundingBox())
         //console.log(this.floor.boundingBox())
-        if (this.checkCollision(this.bird.boundingBox(), this.floor.boundingBox())) {
-            console.log("bird hit floor")
-            this.setState(GameState.GAMEOVER)
+        if ((this.state == GameState.PLAYING) || (this.state == GameState.HITPIPE)) {
+            if (this.checkCollision(this.bird.boundingBox(), this.floor.boundingBox())) {
+                console.log("bird hit floor")
+                this.setState(GameState.GAMEOVER)
+            }
         }
         //else if (this.checkCollision(this.bird.boundingBox(), this.pipe.lowerboundingBox() )) {
         //    console.log("bird hit lower pipe")
         //    this.setState(GameState.HITGROUND)
         //}
-        for (let i = 0; i < this.pipes.length; i++) {
-            if (this.checkCollision(this.bird.boundingBox(), this.pipes[i].upperboundingBox())) {
-                console.log("bird hit pipe")
-                this.setState(GameState.HITPIPE)
-            }
-            if (this.checkCollision(this.bird.boundingBox(), this.pipes[i].lowerboundingBox())) {
-                console.log("bird hit pipe")
-                this.setState(GameState.HITPIPE)
+        if (this.state == GameState.PLAYING) {
+            for (let i = 0; i < this.pipes.length; i++) {
+                if (this.checkCollision(this.bird.boundingBox(), this.pipes[i].upperboundingBox())) {
+                    console.log("bird hit pipe")
+                    this.setState(GameState.HITPIPE)
+                }
+                if (this.checkCollision(this.bird.boundingBox(), this.pipes[i].lowerboundingBox())) {
+                    console.log("bird hit pipe")
+                    this.setState(GameState.HITPIPE)
+                }
             }
         }
-
         window.requestAnimationFrame(this.frame.bind(this))
     }
 
@@ -162,9 +164,9 @@ export default class Game {
         else if (state == GameState.GETTINGREADY) {
             this.bird.prepareForGame()
         }
-            
+
         else if (state == GameState.READY) {
-            
+
         }
 
         else if (state == GameState.PLAYING) {
@@ -176,8 +178,8 @@ export default class Game {
         }
 
         else if (state == GameState.HITPIPE) {
-            for (let i = 0; i < this.pipes.length; i++){
-            this.pipes[i].stopmoving()
+            for (let i = 0; i < this.pipes.length; i++) {
+                this.pipes[i].stopmoving()
             }
             this.bird.hittingThePipe()
             this.floor.gameover()
@@ -185,8 +187,8 @@ export default class Game {
         }
 
         else if (state == GameState.GAMEOVER) {
-            for (let i = 0; i < this.pipes.length; i++){
-            this.pipes[i].stopmoving()
+            for (let i = 0; i < this.pipes.length; i++) {
+                this.pipes[i].stopmoving()
             }
             this.bird.hittingTheGround()
             this.floor.gameover()
