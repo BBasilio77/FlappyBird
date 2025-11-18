@@ -1,20 +1,29 @@
 <html>
-     <head>
-<title>Flappy Bird</title>
-<style>
-    canvas { border: 10px solid rgb(0, 0, 0)}
-</style>
-<script type="module" src="game.js"></script>
-<script type="module">
-    import Game from './game.js'
-    function runGame() {
-        var game = new Game()
-        game.run()
-    }
-    document.addEventListener('DOMContentLoaded',runGame)
-</script>
-</head>
-      <body>  
-   <canvas id="game" width ="960" height="720"></canvas> 
-</body>   
+    <head>
+        <title>Flappy Bird</title>
+        <style>
+            canvas { border: 10px solid rgb(0, 0, 0)}
+            body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+            button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+        </style>
+        <script type="module" src="game.js"></script>
+        <script type="module">
+            import Game from './game.js'
+            function runGame() {
+                // Attach click event to restart button
+                //document.getElementById('restartBtn').addEventListener('click', function () {
+                //   // This reloads the page, same as pressing Ctrl+R
+                //   location.reload();
+                //});
+                var game = new Game()
+                game.run()
+            }
+            document.addEventListener('DOMContentLoaded',runGame)
+        </script>
+    </head>
+    <body>  
+        <canvas id="game" width ="960" height="720"></canvas> 
+        </p>
+        <button id="restartBtn" onClick="location.reload()">Restart Game</button>
+    </body>   
 </html>
