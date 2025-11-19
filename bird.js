@@ -72,7 +72,8 @@ export class Bird {
             if (this.statecounter == 0) {
                 this.setState(BirdState.READY)
             }
-        } else if (this.state == BirdState.ASCENDING) {
+        } 
+        else if (this.state == BirdState.ASCENDING) {
             if (this.dy >= 0) {
                 this.setState(BirdState.FALLING)
             }
@@ -134,9 +135,13 @@ export class Bird {
 
         }
         else if (state == BirdState.ASCENDING) {
-            this.dy = -4
+            this.dy = -5
             this.isgravity = true
 
+        }
+        else if (state == BirdState.HITPIPE) {
+            this.dy = +1
+            this.bobheight = 0
         }
 
         else if (state == BirdState.HITPIPE) {
