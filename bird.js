@@ -139,10 +139,6 @@ export class Bird {
             this.isgravity = true
 
         }
-        else if (state == BirdState.HITPIPE) {
-            this.dy = +1
-            this.bobheight = 0
-        }
 
         else if (state == BirdState.HITPIPE) {
             this.state = BirdState.FALLING
