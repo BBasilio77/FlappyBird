@@ -26,6 +26,9 @@ export default class Game {
         if ((this.hours > 7) && (this.hours < 18)){
             this.background = new Background('JungleWaterfallM.png', 0)
             this.floor = new Floor('BridgeM.png', 2)
+        } else if ((this.hours < 7) && (this.hours > 18)) {
+            this.background = new Background('JungleWaterfallN.png', 0)
+            this.floor = new Floor('BridgeM.png', 2)
         }
         this.createPipes()
         this.setState(GameState.INTRO)
