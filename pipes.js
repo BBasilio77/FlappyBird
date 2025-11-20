@@ -16,19 +16,20 @@ export class Pipe {
         this.img = new Image()
         this.img.src = "flappy-bird-pipe.png"
         this.xRandom = 0
+        this.yRandom = 0
         this.setState(PipeState.IDLE)
     }
     
     draw(ctx) {
         if (this.state != PipeState.IDLE) {
         ctx.save()
-        ctx.translate((this.x + this.xRandom), this.y +(this.opening/2))
+        ctx.translate((this.x + this.xRandom), (this.y + this.yRandom) + (this.opening/2))
         ctx.scale(2, 2)
         ctx.drawImage(this.img, 0, 0)
         ctx.restore()
 
         ctx.save()
-        ctx.translate((this.x + this.xRandom), this.y -(this.opening/2))
+        ctx.translate((this.x + this.xRandom), (this.y + this.yRandom) - (this.opening/2))
         ctx.scale(2, -2)
         ctx.drawImage(this.img, 0, 0)
         ctx.restore()
@@ -38,7 +39,7 @@ export class Pipe {
     upperboundingBox() {
         return { 
             x: (this.x + this.xRandom),  
-            y: this.y -(this.opening/2)-this.img.height,
+            y: this.y -(this.opening/2)-this.img.height + this.yRandom,
             width: this.img.width, 
             height: this.img.height }
     }
@@ -46,7 +47,7 @@ export class Pipe {
     lowerboundingBox() {
         return { 
             x: (this.x + this.xRandom), 
-            y: this.y +(this.opening/2), 
+            y: this.y +(this.opening/2) + this.yRandom,
             width: this.img.width, 
             height: this.img.height }
     }
@@ -58,7 +59,7 @@ export class Pipe {
         this.x = (this.x + this.dx)
          if(this.x <= -200){
             this.x +=1260 
-            this.yRandom = Math.random()*400-200
+            this.yRandom = Math.random()*300-150
         }
     }
 
