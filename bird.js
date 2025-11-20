@@ -20,6 +20,7 @@ export class Bird {
         this.statecounter = 0
         this.bobangle = 0
         this.bobheight = 0
+        this.birdscore = 0
         //angle goes here
         //flap sequence here
         this.isflying = false
@@ -114,7 +115,7 @@ export class Bird {
             this.dx = 0
             this.dy = 0
             this.isgravity = false
-            this.isflying = false
+            this.isflying = true
         }
         else if (state == BirdState.GETTINGREADY) {
             this.dx = -5
