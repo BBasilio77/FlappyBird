@@ -18,13 +18,15 @@ export default class Game {
         const canvas = document.getElementById("game")
         this.ctx = canvas.getContext("2d")
 
-
-
+        this.now = new Date()
+        this.hours = this.now.getHours()
 
         document.addEventListener("keydown", this.keydown.bind(this))
         this.bird = new Bird()
-        this.background = new Background('newbackground.webp', 1)
-        this.floor = new Floor('Floor2.0.png', 2)
+        if ((this.hours > 7) && (this.hours < 18)){
+            this.background = new Background('JungleWaterfallM.png', 0)
+            this.floor = new Floor('BridgeM.png', 2)
+        }
         this.createPipes()
         this.setState(GameState.INTRO)
     }
