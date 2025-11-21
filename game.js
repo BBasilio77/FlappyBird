@@ -114,7 +114,7 @@ export default class Game {
         else if (this.state == GameState.GAMEOVER) {
              this.ctx.font = "20px monospace"
             this.ctx.fillStyle = "rgba(255, 255, 255, 1)"
-            this.ctx.fillText("Press the RESTART button below to play again", 250, 360)
+            this.ctx.fillText("You're really bad at this game, you should really RUN IT BACK.", 120, 360)
         }
         
 
