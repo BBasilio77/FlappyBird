@@ -74,28 +74,28 @@ export default class Game {
 
         if (this.state == GameState.INTRO) {
             this.ctx.font = "30px monospace"
-            this.ctx.fillStyle = "rgba(255, 0, 0, 1)"
+            this.ctx.fillStyle = "rgba(255, 255, 255, 1)"
             this.ctx.fillText("Flappy", 380, 250)
             this.ctx.font = "30px monospace"
-            this.ctx.fillStyle = "rgba(255, 238, 0, 1)"
+            this.ctx.fillStyle = "rgba(255, 255, 255, 1)"
             this.ctx.fillText("Bird", 490, 250)
             this.ctx.font = "30px monospace"
-            this.ctx.fillStyle = "rgba(8, 0, 255, 1)"
+            this.ctx.fillStyle = "rgba(255, 255, 255, 1)"
             this.ctx.fillText("press SPACE to begin...", 310, 500)
             this.birdscore = 0
         }
         else if (this.state == GameState.READY) {
             this.ctx.font = "30px monospace"
-            this.ctx.fillStyle = "rgba(255, 0, 0, 1)"
+            this.ctx.fillStyle = "rgba(255, 255, 255, 1)"
             this.ctx.fillText("Press", 300, 250)
             this.ctx.font = "30px monospace"
-            this.ctx.fillStyle = "rgba(30, 0, 255, 1)"
+            this.ctx.fillStyle = "rgba(255, 255, 255, 1)"
             this.ctx.fillText(" SPACEBAR", 375, 250)
             this.ctx.font = "30px monospace"
-            this.ctx.fillStyle = "rgba(255, 242, 0, 1)"
+            this.ctx.fillStyle = "rgba(255, 255, 255, 1)"
             this.ctx.fillText("to", 535, 250)
             this.ctx.font = "30px monospace"
-            this.ctx.fillStyle = "rgba(0, 255, 38, 1)"
+            this.ctx.fillStyle = "rgba(255, 255, 255, 1)"
             this.ctx.fillText("jump", 580, 250)
         }
         else if (this.state == GameState.GETTINGREADY) {
@@ -111,7 +111,7 @@ export default class Game {
         else if (this.state == GameState.GAMEOVER) {
              this.ctx.font = "20px monospace"
             this.ctx.fillStyle = "rgba(255, 255, 255, 1)"
-            this.ctx.fillText("Press the RESTART button below to play again", 195, 370)
+            this.ctx.fillText("Press the RESTART button below to play again", 250, 360)
         }
         
 
@@ -136,7 +136,7 @@ export default class Game {
                 var firstpipebounds = this.pipes[i].upperboundingBox()
                 this.pipes[i].animate()
                 var secondpipebounds = this.pipes[i].upperboundingBox()
-                if ((birdbounds.x < firstpipebounds.x) || (birdbounds.x >= secondpipebounds.x)) {
+                if ((birdbounds.x > firstpipebounds.x) || (birdbounds.x <= secondpipebounds.x)) {
                     this.birdscore += 1
                 }
                 if (this.checkCollision(this.bird.boundingBox(), this.pipes[i].upperboundingBox())) {
