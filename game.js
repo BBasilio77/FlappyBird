@@ -23,8 +23,11 @@ export default class Game {
 
         document.addEventListener("keydown", this.keydown.bind(this))
         this.bird = new Bird()
-        if ((this.hours > 7) && (this.hours < 18)){
+        if ((this.hours > 8) && (this.hours < 18)){
             this.background = new Background('JungleWaterfallM.png', 0)
+            this.floor = new Floor('BridgeM.png', 2)
+        } else  {
+            this.background = new Background('JungleWaterfallN.png', 0)
             this.floor = new Floor('BridgeM.png', 2)
         }
         this.createPipes()
