@@ -108,7 +108,7 @@ export default class Game {
         }
         else if (this.state == GameState.PLAYING) {
             this.ctx.font = "50px monospace"
-            this.ctx.fillStyle = "rgba(0, 0, 0, 1)"
+            this.ctx.fillStyle = "rgba(255, 255, 255, 1)"
             this.ctx.fillText(`${this.birdscore}`, 420, 70) 
         }
         else if (this.state == GameState.GAMEOVER) {
@@ -135,11 +135,13 @@ export default class Game {
 
         if (this.state == GameState.PLAYING) {
             var birdbounds = this.bird.boundingBox()
+            console.log("animating pipes")
             for (let i = 0; i < this.pipes.length; i++) {
                 var firstpipebounds = this.pipes[i].upperboundingBox()
                 this.pipes[i].animate()
                 var secondpipebounds = this.pipes[i].upperboundingBox()
-                if ((birdbounds.x > firstpipebounds.x) || (birdbounds.x <= secondpipebounds.x)) {
+                console.log(`has bird @ ${birdbounds.x} passed pipe @ ${firstpipebounds.x} ?`)
+                if ((birdbounds.x < firstpipebounds.x) && (birdbounds.x >= secondpipebounds.x)) {
                     this.birdscore += 1
                 }
                 if (this.checkCollision(this.bird.boundingBox(), this.pipes[i].upperboundingBox())) {
