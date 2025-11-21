@@ -59,7 +59,8 @@ export class Pipe {
         this.x = (this.x + this.dx)
          if(this.x <= -200){
             this.x +=1260 
-            this.yRandom = Math.random()*300-150
+            this.yRandom = Math.random()*200-20
+            this.xRandom = 50+Math.random()*100
         }
     }
 
@@ -75,7 +76,7 @@ export class Pipe {
         
         if (state == PipeState.IDLE){
             this.x = this.startingPOS
-            this.y = 160+Math.random()*400
+            this.y = 160+Math.random()*200
             this.dx = 0
             this.xRandom = 50+Math.random()*100
         }
