@@ -17,6 +17,8 @@ export class Pipe {
         this.img.src = "flappy-bird-pipe.png"
         this.xRandom = 0
         this.yRandom = 0
+        this.xRdm = 100
+        this.yRdm = 200
         this.setState(PipeState.IDLE)
     }
     
@@ -59,8 +61,8 @@ export class Pipe {
         this.x = (this.x + this.dx)
          if(this.x <= -200){
             this.x +=1260 
-            this.yRandom = Math.random()*200-20
-            this.xRandom = 50+Math.random()*100
+            this.yRandom = Math.random()*this.yRdm-20
+            this.xRandom = 50+Math.random()*this.xRdm
         }
     }
 
