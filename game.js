@@ -114,7 +114,7 @@ export default class Game {
         else if (this.state == GameState.GAMEOVER) {
              this.ctx.font = "20px monospace"
             this.ctx.fillStyle = "rgba(255, 255, 255, 1)"
-            this.ctx.fillText("You're really bad at this game, you should really RUN IT BACK.", 120, 360)
+            this.ctx.fillText("Your bird went from flapping to flatlining in 0.2 seconds.", 160, 360)
         }
         
 
