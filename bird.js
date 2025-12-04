@@ -58,6 +58,11 @@ export class Bird {
     animate() {
         this.x += this.dx
         this.y += this.dy
+            //Prevents bird from going above the canvas
+        if (this.y < 0) {
+            this.y = 0
+            this.dy = 0
+        }
         if (this.isgravity) {
             this.dy += 0.25
 

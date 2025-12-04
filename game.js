@@ -23,7 +23,7 @@ export default class Game {
         this.gameovermessages[3] = "You didn't lose, you donated your dignity to the void."
         this.gameovermessages[4] = "You didn't just crash, you face-planted into destiny's trashcan."
         this.gameovermessages[5] = "Legendärer Crash. Historisch schlecht. Respekt."
-        this.gameovermessages[6] = "You flew with the elegance of a thrown brick."
+        this.gameovermessages[6] = "You flew like a majestic brick."
         const canvas = document.getElementById("game")
         this.ctx = canvas.getContext("2d")
         this.now = new Date()
@@ -31,12 +31,6 @@ export default class Game {
 
         this.ctx.textAlign = "center"
         this.ctx.textBaseline = "middle"
-
-
-
-
-
-
 
         document.addEventListener("keydown", this.keydown.bind(this))
         this.bird = new Bird()
@@ -128,7 +122,7 @@ export default class Game {
         else if (this.state == GameState.PLAYING) {
             this.ctx.font = "50px monospace"
             this.ctx.fillStyle = "rgba(255, 255, 255, 1)"
-            this.ctx.fillText(`${this.birdscore}`, 420, 70) 
+            this.ctx.fillText(`${this.birdscore}`, 480, 70) 
         }
         else if (this.state == GameState.GAMEOVER) {
              this.ctx.font = "20px monospace"
