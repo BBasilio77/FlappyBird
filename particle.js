@@ -1,6 +1,4 @@
-const ParticleState = {
-    IDLE: "idle",
-}
+
 
 export class Particle {
     constructor(x, y) {
@@ -10,36 +8,26 @@ export class Particle {
         this.dy = 2
         this.img = new Image()
         this.img.src = "snowflake.webp"
-        this.setState(ParticleState.IDLE)
     }
 
     draw(ctx) {
-        if (this.state != ParticleState.IDLE) {
+
         ctx.save()
         ctx.translate((this.x), (this.y)),
-        ctx.scale(1, 1)
+        ctx.scale(0.25, 0.25)
         ctx.drawImage(this.img, 0, 0)
         ctx.restore()
-        }
+        
     }
 
     animate() {
        this.y += this.dy
         this.x += this.dx
-         if(this.y <= -200){
-            this.y +=1260 
+         if(this.y >= 740){
+            this.y -= 760
         }
     }
 
-
-    setState(state) {
-        console.log(`Particle changing to state ${state}`)
-        
-        if (state == ParticleState.IDLE){
-
-        }
-        this.state = state
-    }
 
 }
 

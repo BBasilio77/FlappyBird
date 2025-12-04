@@ -68,9 +68,9 @@ export default class Game {
 
     frame() {
         this.ctx.clearRect(0, 0, 960, 720)
-
-        this.particles.animate()
         this.background.draw(this.ctx)
+        this.particles.draw(this.ctx)
+    
         for (let i = 0; i < this.pipes.length; i++) {
             this.pipes[i].draw(this.ctx)
         }
