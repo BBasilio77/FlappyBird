@@ -145,6 +145,7 @@ export class Bird {
             this.state = BirdState.FALLING
             this.bobheight = 0
             this.isflying = false
+            this.dy = -5
         }
 
         else if (state == BirdState.HITGROUND) {

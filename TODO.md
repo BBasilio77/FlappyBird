@@ -1,0 +1,8 @@
+To Do List
+- When the bird collides with the pipe, add a little bounce. Visit https://flappybird.guru/  and have the bird collide with a pipe.
+- Possibly weather (figure out how)
+    - season
+    - holiday
+    - particles
+- The bird cannot fly infinitely into the air, but rather stop at the top of the canvas
+randomize gameover message
