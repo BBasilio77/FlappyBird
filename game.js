@@ -3,6 +3,7 @@ import { Bird } from './bird.js'
 import { Background } from './Background.js'
 import { Pipe } from './pipes.js'
 import { Floor } from './floor.js'
+import { ParticleSystem } from './particle.js'
 
 const GameState = {
     INTRO: "intro",
@@ -23,6 +24,7 @@ export default class Game {
 
         document.addEventListener("keydown", this.keydown.bind(this))
         this.bird = new Bird()
+        this.particles = new ParticleSystem()
         if ((this.hours > 8) && (this.hours < 18)){
             this.background = new Background('JungleWaterfallM.png', 0)
             this.floor = new Floor('BridgeM.png', 2)
@@ -67,13 +69,14 @@ export default class Game {
     frame() {
         this.ctx.clearRect(0, 0, 960, 720)
 
-
+        this.particles.animate()
         this.background.draw(this.ctx)
         for (let i = 0; i < this.pipes.length; i++) {
             this.pipes[i].draw(this.ctx)
         }
         this.floor.draw(this.ctx)
         this.bird.draw(this.ctx)
+        
 
         if (this.state == GameState.INTRO) {
             this.ctx.font = "30px monospace"
@@ -128,10 +131,12 @@ export default class Game {
             }
 
         }
-
+        
+        this.particles.animate()
         this.background.animate()
         this.floor.animate()
         this.bird.animate()
+        
 
         if (this.state == GameState.PLAYING) {
             var birdbounds = this.bird.boundingBox()
