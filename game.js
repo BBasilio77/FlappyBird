@@ -15,11 +15,27 @@ const GameState = {
 
 export default class Game {
     constructor() {
+        this.gameovermessages = new Array()
+        this.gameovermessages[0] = "Your bird when from flapping to flatlining in 0.2 seconds."
+        this.gameovermessages[1] = "Gravity 1, You 0."
+        this.gameovermessages[2] = "Your run was shorter than the tutorial."
+        this.gameovermessages[3] = "You didn't lose, you donated your dignity to the void."
+        this.gameovermessages[4] = "You didn't just crash, you face-planted into destiny's trashcan."
+        this.gameovermessages[5] = "Legendärer Crash. Historisch schlecht. Respekt."
+        this.gameovermessages[6] = "You flew with the elegance of a thrown brick."
         const canvas = document.getElementById("game")
         this.ctx = canvas.getContext("2d")
-
         this.now = new Date()
         this.hours = this.now.getHours()
+
+        this.ctx.textAlign = "center"
+        this.ctx.textBaseline = "middle"
+
+
+
+
+
+
 
         document.addEventListener("keydown", this.keydown.bind(this))
         this.bird = new Bird()
@@ -78,28 +94,28 @@ export default class Game {
         if (this.state == GameState.INTRO) {
             this.ctx.font = "30px monospace"
             this.ctx.fillStyle = "rgba(255, 255, 255, 1)"
-            this.ctx.fillText("Flappy", 380, 250)
+            this.ctx.fillText("Flappy", 410, 250)
             this.ctx.font = "30px monospace"
             this.ctx.fillStyle = "rgba(255, 255, 255, 1)"
-            this.ctx.fillText("Bird", 490, 250)
+            this.ctx.fillText("Bird", 547, 250)
             this.ctx.font = "30px monospace"
             this.ctx.fillStyle = "rgba(255, 255, 255, 1)"
-            this.ctx.fillText("press SPACE to begin...", 310, 500)
+            this.ctx.fillText("press SPACE to begin...", 480, 500)
             this.birdscore = 0
         }
         else if (this.state == GameState.READY) {
             this.ctx.font = "30px monospace"
             this.ctx.fillStyle = "rgba(255, 255, 255, 1)"
-            this.ctx.fillText("Press", 300, 250)
+            this.ctx.fillText("Press", 325, 250)
             this.ctx.font = "30px monospace"
             this.ctx.fillStyle = "rgba(255, 255, 255, 1)"
-            this.ctx.fillText(" SPACEBAR", 375, 250)
+            this.ctx.fillText(" SPACEBAR", 440, 250)
             this.ctx.font = "30px monospace"
             this.ctx.fillStyle = "rgba(255, 255, 255, 1)"
-            this.ctx.fillText("to", 535, 250)
+            this.ctx.fillText("to", 545, 250)
             this.ctx.font = "30px monospace"
             this.ctx.fillStyle = "rgba(255, 255, 255, 1)"
-            this.ctx.fillText("jump", 580, 250)
+            this.ctx.fillText("jump", 610, 250)
         }
         else if (this.state == GameState.GETTINGREADY) {
             if (this.bird.birdIsReady()) {
@@ -114,7 +130,7 @@ export default class Game {
         else if (this.state == GameState.GAMEOVER) {
              this.ctx.font = "20px monospace"
             this.ctx.fillStyle = "rgba(255, 255, 255, 1)"
-            this.ctx.fillText("Your bird went from flapping to flatlining in 0.2 seconds.", 160, 360)
+            this.ctx.fillText(this.gameovermessage, 480, 360)
         }
         
 
@@ -214,6 +230,7 @@ export default class Game {
             this.bird.hittingTheGround()
             this.floor.gameover()
             this.background.notmoving()
+            this.gameovermessage = this.gameovermessages[Math.floor(Math.random() * 6)]
         }
         // else if (state == State.FALLING) {
 
