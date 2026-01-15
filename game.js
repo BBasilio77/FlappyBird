@@ -17,7 +17,7 @@ const GameState = {
 export default class Game {
     constructor() {
         this.gameovermessages = new Array()
-        this.gameovermessages[0] = "Your bird when from flapping to flatlining in 0.2 seconds."
+        this.gameovermessages[0] = "Your bird went from flapping to flatlining in 0.2 seconds."
         this.gameovermessages[1] = "Gravity 1, You 0."
         this.gameovermessages[2] = "Your run was shorter than the tutorial."
         this.gameovermessages[3] = "You didn't lose, you donated your dignity to the void."
