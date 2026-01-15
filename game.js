@@ -14,6 +14,36 @@ const GameState = {
     GAMEOVER: "gameover"
 }
 
+const themes = {
+    
+    0: {
+        name: "Winter",
+        background: 'JungleWaterfallN.png',
+        floor: '5.0.png',
+        weather: 'snowflake.webp',
+    },
+    1: {
+        name: "Spring",
+        background: '',
+        floor: '',
+        weather: 'Waterdrop.png',
+    },
+    2: {
+        name: "Summer",
+        background: 'JungleWaterfallM.png',
+        floor: 'BridgeM.png',
+        weather: ''
+    },
+    3: {
+        name: "Autumn",
+        background: '',
+        floor: '',
+        weather: 'FallLeave.png',
+    }
+}
+
+
+
 export default class Game {
     constructor() {
         this.gameovermessages = new Array()
@@ -24,25 +54,25 @@ export default class Game {
         this.gameovermessages[4] = "You didn't just crash, you face-planted into destiny's trashcan."
         this.gameovermessages[5] = "Legendärer Crash. Historisch schlecht. Respekt."
         this.gameovermessages[6] = "You flew like a majestic brick."
+
         const canvas = document.getElementById("game")
         this.ctx = canvas.getContext("2d")
-        this.now = new Date()
-        this.hours = this.now.getHours()
-
+    
         this.ctx.textAlign = "center"
         this.ctx.textBaseline = "middle"
 
-        document.addEventListener("keydown", this.keydown.bind(this))
+        //this.now = new Date()
+       //this.hours = this.now.getHours()
+
+        this.theme = 0
+        this.background = new Background(themes[this.theme].background, 0)
+        this.floor = new Floor('5.0.png', 2)
         this.bird = new Bird()
         this.particles = new ParticleSystem()
-        if ((this.hours > 8) && (this.hours < 18)){
-            this.background = new Background('JungleWaterfallM.png', 0)
-            this.floor = new Floor('BridgeM.png', 2)
-        } else  {
-            this.background = new Background('JungleWaterfallN.png', 0)
-            this.floor = new Floor('BridgeM.png', 2)
-        }
         this.createPipes()
+        
+
+        document.addEventListener("keydown", this.keydown.bind(this))
         this.setState(GameState.INTRO)
     }
 
