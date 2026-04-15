@@ -100,7 +100,7 @@ export class Bird {
         this.setState(BirdState.HITGROUND)
     }
 
-    //falling & ascending is in "jump() {}"
+    //falling & ascending is in "jump() {this.setState(BirdState.ASCENDING)}"
     jump() {
         this.setState(BirdState.ASCENDING)
     }
@@ -143,6 +143,7 @@ export class Bird {
         else if (state == BirdState.ASCENDING) {
             this.dy = -5
             this.isgravity = true
+           
 
         }
 
@@ -160,9 +161,8 @@ export class Bird {
             this.isgravity = false
             this.isflying = false
         }
+        
 
-        //for ascending, to change to falling state, check to see if DY is + or -
-        //When the APEX is reached, switch to falling state
         this.state = state
     }
 }
