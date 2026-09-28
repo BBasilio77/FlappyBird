@@ -2,7 +2,7 @@ const BackgroundState = {
     MOVING: "moving",
     NOTMOVING: "notmoving",
 }   
-export class BackgroundState   {
+export class Background   {
     constructor(imagefile,speed) {
         this.x = 0
         this.y = 0
