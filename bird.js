@@ -111,7 +111,7 @@ export class Bird {
 
 
 
-    setState(state) {
+    setState (state) {
         console.log(`Bird changing to state "${state}"`)
 
         if (state == BirdState.IDLE) {
