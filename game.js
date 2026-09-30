@@ -47,13 +47,19 @@ const themes = {
 export default class Game {
     constructor() {
         this.gameovermessages = new Array()
-        this.gameovermessages[0] = "Your bird went from flapping to flatlining in 0.2 seconds."
-        this.gameovermessages[1] = "Gravity 1, You 0."
-        this.gameovermessages[2] = "Your run was shorter than the tutorial."
-        this.gameovermessages[3] = "You didn't lose, you donated your dignity to the void."
-        this.gameovermessages[4] = "You didn't just crash, you face-planted into destiny's trashcan."
-        this.gameovermessages[5] = "Legendärer Crash. Historisch schlecht. Respekt."
-        this.gameovermessages[6] = "You flew like a majestic brick."
+        this.gameovermessages[0] = "You are a sad, strange little man, and you have my pity. - Buzz Lightyear"
+        this.gameovermessages[1] = "Legendärer Crash. Historisch schlecht. Respekt. - Kianni Lotz"
+        this.gameovermessages[2] = "You really take live by the pipes die by the pipes this serious?"
+        this.gameovermessages[3] = "Consequences. - John Wick"
+        this.gameovermessages[4] = "Ohio unimpressed."
+        this.gameovermessages[5] = "YO GIRLFRIEND LOOK LIKE MY MOM. - Tyler, The Creator"
+        this.gameovermessages[6] = "Well, you dodged the wrench, but you sure didn't dodge the pipes."
+        this.gameovermessages[7] = "That wasn't flying, that was falling with style. - Woody"
+        this.gameovermessages[8] = "I really thought you were the chosen one. The prophecy was wrong."
+        this.gameovermessages[9] = "You lack the basic skills of a common pigeon."
+        this.gameovermessages[10] = "Perhaps sir, you should consider a game with less obstacles?"
+      
+        
 
         const canvas = document.getElementById("game")
         this.ctx = canvas.getContext("2d")
