@@ -47,17 +47,15 @@ const themes = {
 export default class Game {
     constructor() {
         this.gameovermessages = new Array()
-        this.gameovermessages[0] = "You are a sad, strange little man, and you have my pity. - Buzz Lightyear"
+        this.gameovermessages[0] = "You are a sad, strange little man, and you don't have my pity."
         this.gameovermessages[1] = "Legendärer Crash. Historisch schlecht. Respekt. - Kianni Lotz"
         this.gameovermessages[2] = "You really take live by the pipes die by the pipes this serious?"
         this.gameovermessages[3] = "Consequences. - John Wick"
-        this.gameovermessages[4] = "Ohio unimpressed."
-        this.gameovermessages[5] = "YO GIRLFRIEND LOOK LIKE MY MOM. - Tyler, The Creator"
+        this.gameovermessages[4] = "I spent so much sponsor money on you.. Worst investment. EVER."
+        this.gameovermessages[5] = "YO GIRLFRIEND LOOK LIKE MY MOM! - Tyler, The Creator"
         this.gameovermessages[6] = "Well, you dodged the wrench, but you sure didn't dodge the pipes."
-        this.gameovermessages[7] = "That wasn't flying, that was falling with style. - Woody"
-        this.gameovermessages[8] = "I really thought you were the chosen one. The prophecy was wrong."
-        this.gameovermessages[9] = "You lack the basic skills of a common pigeon."
-        this.gameovermessages[10] = "Perhaps sir, you should consider a game with less obstacles?"
+        this.gameovermessages[7] = "I really thought you were the chosen one. The prophecy was wrong."
+        this.gameovermessages[8] = "Perhaps sir, you should consider a game with less obstacles?"
       
         
 
